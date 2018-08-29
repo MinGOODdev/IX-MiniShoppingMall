@@ -14,6 +14,16 @@ public class UserService {
 
   /**
    * User 조회
+   * @param id
+   * @return
+   */
+  public User findById(int id) {
+    User user = userRepository.findById(id);
+    return user;
+  }
+
+  /**
+   * User 조회
    * @param login
    * @return
    */

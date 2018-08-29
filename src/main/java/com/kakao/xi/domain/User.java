@@ -11,8 +11,8 @@ import javax.persistence.Id;
 
 @Getter
 @Setter
-@Entity
 @ToString
+@Entity
 //@Table(name = "\"user\"")
 public class User {
 
