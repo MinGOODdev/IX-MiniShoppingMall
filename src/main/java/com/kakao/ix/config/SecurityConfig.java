@@ -13,6 +13,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+  // TODO 로그인 사용자만 할 수 있는 것 설정하기
+
   @Autowired
   private MyAuthenticationProvider myAuthenticationProvider;
 
@@ -20,7 +22,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   public void configure(WebSecurity webSecurity) {
     // 보안 기능이 필요없는 Resource(css, js, png 등)의 경로를 설정합니다.
     webSecurity.ignoring().antMatchers("/resources/**");
-    // TODO 구매하는 것은 로그인한 사용자만 할 수 있도록 하기
   }
 
   @Override

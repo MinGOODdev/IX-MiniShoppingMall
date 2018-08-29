@@ -6,15 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("guest")
 public class GuestController {
 
   @Autowired
   private UserService userService;
+
+  /**
+   * 로그인 후 첫 View
+   * @return
+   */
+  @GetMapping("index")
+  public String index() {
+    return "user/index";
+  }
 
   /**
    * 로그인 View
