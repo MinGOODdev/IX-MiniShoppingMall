@@ -1,10 +1,10 @@
-package com.kakao.xi.controller.rest;
+package com.kakao.ix.controller.rest;
 
-import com.kakao.xi.domain.Cart;
-import com.kakao.xi.domain.Product;
-import com.kakao.xi.service.CartService;
-import com.kakao.xi.service.ProductService;
-import com.kakao.xi.service.UserService;
+import com.kakao.ix.domain.Cart;
+import com.kakao.ix.domain.Product;
+import com.kakao.ix.service.CartService;
+import com.kakao.ix.service.ProductService;
+import com.kakao.ix.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +47,7 @@ public class RestProductController {
   }
 
   /**
-   * 해당 상품을 사용자 장바구니에 추가
+   * 해당 상품을 로그인 사용자 장바구니에 추가
    * @param productId
    * @param number
    * @return

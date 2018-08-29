@@ -1,4 +1,4 @@
-package com.kakao.xi.domain;
+package com.kakao.ix.domain;
 
 import lombok.Getter;
 import lombok.Setter;

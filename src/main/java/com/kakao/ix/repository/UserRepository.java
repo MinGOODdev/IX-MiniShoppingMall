@@ -1,6 +1,6 @@
-package com.kakao.xi.repository;
+package com.kakao.ix.repository;
 
-import com.kakao.xi.domain.User;
+import com.kakao.ix.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Integer> {

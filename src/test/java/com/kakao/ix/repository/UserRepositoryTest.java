@@ -1,6 +1,6 @@
-package com.kakao.xi.repository;
+package com.kakao.ix.repository;
 
-import com.kakao.xi.domain.User;
+import com.kakao.ix.domain.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;

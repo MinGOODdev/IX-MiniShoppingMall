@@ -1,4 +1,4 @@
-package com.kakao.xi.util;
+package com.kakao.ix.util;
 
 import java.security.MessageDigest;
 

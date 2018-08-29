@@ -1,6 +1,6 @@
-package com.kakao.xi.repository;
+package com.kakao.ix.repository;
 
-import com.kakao.xi.domain.Product;
+import com.kakao.ix.domain.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

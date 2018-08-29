@@ -1,7 +1,7 @@
-package com.kakao.xi.service;
+package com.kakao.ix.service;
 
-import com.kakao.xi.domain.Product;
-import com.kakao.xi.repository.ProductRepository;
+import com.kakao.ix.domain.Product;
+import com.kakao.ix.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

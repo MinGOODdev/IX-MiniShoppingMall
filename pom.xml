@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.kakao</groupId>
-    <artifactId>xi</artifactId>
+    <artifactId>ix</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>xi</name>
+    <name>ix</name>
     <description>KakaoXI project for Spring Boot</description>
 
     <parent>

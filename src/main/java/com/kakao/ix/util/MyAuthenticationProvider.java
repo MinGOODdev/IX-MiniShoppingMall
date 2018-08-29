@@ -1,7 +1,7 @@
-package com.kakao.xi.util;
+package com.kakao.ix.util;
 
-import com.kakao.xi.domain.User;
-import com.kakao.xi.service.UserService;
+import com.kakao.ix.domain.User;
+import com.kakao.ix.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

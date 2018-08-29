@@ -1,7 +1,7 @@
-package com.kakao.xi.controller;
+package com.kakao.ix.controller;
 
-import com.kakao.xi.domain.User;
-import com.kakao.xi.service.UserService;
+import com.kakao.ix.domain.User;
+import com.kakao.ix.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

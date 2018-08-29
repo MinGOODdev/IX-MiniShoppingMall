@@ -1,8 +1,8 @@
-package com.kakao.xi.service;
+package com.kakao.ix.service;
 
-import com.kakao.xi.domain.User;
-import com.kakao.xi.repository.UserRepository;
-import com.kakao.xi.util.SHA256Encrypt;
+import com.kakao.ix.domain.User;
+import com.kakao.ix.repository.UserRepository;
+import com.kakao.ix.util.SHA256Encrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

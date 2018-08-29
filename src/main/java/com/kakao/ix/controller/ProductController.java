@@ -1,7 +1,7 @@
-package com.kakao.xi.controller;
+package com.kakao.ix.controller;
 
-import com.kakao.xi.domain.Product;
-import com.kakao.xi.service.ProductService;
+import com.kakao.ix.domain.Product;
+import com.kakao.ix.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,6 +1,6 @@
-package com.kakao.xi.config;
+package com.kakao.ix.config;
 
-import com.kakao.xi.util.MyAuthenticationProvider;
+import com.kakao.ix.util.MyAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

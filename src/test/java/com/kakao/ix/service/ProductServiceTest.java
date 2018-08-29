@@ -1,6 +1,6 @@
-package com.kakao.xi.service;
+package com.kakao.ix.service;
 
-import com.kakao.xi.domain.Product;
+import com.kakao.ix.domain.Product;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
