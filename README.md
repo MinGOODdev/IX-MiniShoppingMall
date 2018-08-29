@@ -1,4 +1,4 @@
-# Kakao XI Mini Shopping Mall
+# KakaoIX - Mini Shopping Mall
 
 ## Used
 * Spring Boot

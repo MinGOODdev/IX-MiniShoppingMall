@@ -2,13 +2,15 @@ package com.kakao.ix.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
+@ToString
 @Entity
-//@Table(name = "order")
+@Table(name = "\"order\"")
 public class Order {
 
   @Id

@@ -10,13 +10,20 @@ import javax.persistence.*;
 @Setter
 @ToString
 @Entity
-@Table(name = "\"user\"")
-public class User {
+@Table(name = "cart")
+public class Cart {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
-  private String login;
-  private String password;
+  private int number;
+
+  @ManyToOne
+  @JoinColumn(name = "userId")
+  User user;
+
+  @ManyToOne
+  @JoinColumn(name = "productId")
+  Product product;
 
 }
