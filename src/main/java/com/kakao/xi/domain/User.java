@@ -1,6 +1,5 @@
 package com.kakao.xi.domain;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -21,4 +21,8 @@ public class Product {
   private int productPrice;
   private String imgUrl;
 
+  @Override
+  public String toString() {
+    return String.format("%s / %d / %s", productName, productPrice, imgUrl);
+  }
 }
