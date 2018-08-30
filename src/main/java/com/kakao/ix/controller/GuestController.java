@@ -1,25 +1,33 @@
 package com.kakao.ix.controller;
 
-import com.kakao.ix.domain.User;
-import com.kakao.ix.service.UserService;
+import com.kakao.ix.domain.Product;
+import com.kakao.ix.service.CheckService;
+import com.kakao.ix.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class GuestController {
 
   @Autowired
-  private UserService userService;
+  private ProductService productService;
+  @Autowired
+  private CheckService checkService;
 
   /**
-   * 로그인 후 첫 View
+   * 로그인 후 첫 View - 상품 목록까지
    * @return
    */
-  @GetMapping("index")
-  public String index() {
+  @GetMapping({"/", "index"})
+  public String index(Model model) {
+    List<Product> productList = productService.findAll();
+    model.addAttribute("productList", productList);
     return "user/index";
   }
 
@@ -27,7 +35,7 @@ public class GuestController {
    * 로그인 View
    * @return
    */
-  @GetMapping({"/", "login"})
+  @GetMapping("login")
   public String login() {
     return "guest/login";
   }
@@ -50,11 +58,8 @@ public class GuestController {
   @PostMapping("register")
   public String postRegister(@RequestParam("login") String login,
                              @RequestParam("password") String password) {
-    User user = userService.findByLogin(login);
-    if (user == null) {
-      userService.insert(login, password);
-      return "guest/login";
-    }
+    Boolean flag = checkService.userExistCheck(login, password);
+    if (flag) return "guest/login";
     else return "guest/register";
   }
 

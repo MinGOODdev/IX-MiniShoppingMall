@@ -4,13 +4,26 @@ import com.kakao.ix.domain.User;
 import com.kakao.ix.repository.UserRepository;
 import com.kakao.ix.util.SHA256Encrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import java.security.Principal;
 
 @Service
 public class UserService {
 
   @Autowired
   private UserRepository userRepository;
+
+  /**
+   * 현재 로그인 사용자 가져오기
+   * @return
+   */
+  public User currentLoginUser() {
+    Principal principal = SecurityContextHolder.getContext().getAuthentication();
+    User user = userRepository.findByLogin(principal.getName());
+    return user;
+  }
 
   /**
    * User 조회
