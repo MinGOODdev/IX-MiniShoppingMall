@@ -13,8 +13,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-  // TODO 로그인 사용자만 할 수 있는 것 설정하기
-
   @Autowired
   private MyAuthenticationProvider myAuthenticationProvider;
 
@@ -26,18 +24,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity httpSecurity) throws Exception {
-    httpSecurity.csrf().disable();
+    // httpSecurity.csrf().disable(); // form:form 태그 사용
 
+    // url 별 접근 권한 설정
     httpSecurity.authorizeRequests()
+            .antMatchers("/kakao/product/cart").authenticated()
+            .antMatchers("/kakao/cart/**").authenticated()
+            .antMatchers("/rest/kakao/product/**/**/cart").authenticated()
+            .antMatchers("/rest/kakao/cart/**").authenticated()
+            .antMatchers("/rest/kakao/orders").authenticated()
             .antMatchers("/**").permitAll();
 
-    httpSecurity.formLogin().loginPage("/guest/login")
+    // 로그인 설정
+    httpSecurity.formLogin().loginPage("/login")
             .loginProcessingUrl("/login_processing")
             .failureUrl("/login?error")
             .defaultSuccessUrl("/index", true)
             .usernameParameter("login")
             .passwordParameter("password");
 
+    // 로그아웃 설정
     httpSecurity.logout()
             .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout_processing"))
             .logoutSuccessUrl("/index")
