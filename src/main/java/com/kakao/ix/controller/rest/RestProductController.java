@@ -2,16 +2,15 @@ package com.kakao.ix.controller.rest;
 
 import com.kakao.ix.domain.Cart;
 import com.kakao.ix.domain.Product;
+import com.kakao.ix.domain.User;
 import com.kakao.ix.service.CartService;
 import com.kakao.ix.service.ProductService;
 import com.kakao.ix.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -52,14 +51,13 @@ public class RestProductController {
    * @param number
    * @return
    */
-  @PostMapping("product/{productId}/{number}/cart")
+  @PutMapping("product/{productId}/{number}/cart")
   public ResponseEntity<Cart> productInCart(@PathVariable("productId") int productId,
                                             @PathVariable("number") int number) {
-    Principal principal = SecurityContextHolder.getContext().getAuthentication();
-    int userId = userService.findByLogin(principal.getName()).getId();
-    cartService.insertProduct(userId, productId, number);
+    User currentUser = userService.currentLoginUser();
+    cartService.insertProduct(currentUser.getId(), productId, number);
 
-    Cart cart = cartService.findByUserIdAndProductId(userId, productId);
+    Cart cart = cartService.findByUserIdAndProductId(currentUser.getId(), productId);
     return new ResponseEntity<>(cart, HttpStatus.OK);
   }
 

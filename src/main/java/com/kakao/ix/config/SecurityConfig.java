@@ -24,7 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity httpSecurity) throws Exception {
-    // httpSecurity.csrf().disable(); // form:form 태그 사용
+     httpSecurity.csrf().disable();
 
     // url 별 접근 권한 설정
     httpSecurity.authorizeRequests()
