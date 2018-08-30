@@ -32,15 +32,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/**").permitAll();
 
     httpSecurity.formLogin().loginPage("/guest/login")
-            .loginProcessingUrl("/guest/login_processing")
-            .failureUrl("/guest/login?error")
-            .defaultSuccessUrl("/user/index", true)
+            .loginProcessingUrl("/login_processing")
+            .failureUrl("/login?error")
+            .defaultSuccessUrl("/index", true)
             .usernameParameter("login")
             .passwordParameter("password");
 
     httpSecurity.logout()
             .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout_processing"))
-            .logoutSuccessUrl("/guest/login")
+            .logoutSuccessUrl("/login")
             .invalidateHttpSession(true);   // 로그아웃 시, 세션 데이터 전부 삭제
 
     httpSecurity.authenticationProvider(myAuthenticationProvider);

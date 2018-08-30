@@ -27,7 +27,7 @@ public class GuestController {
    * 로그인 View
    * @return
    */
-  @GetMapping("login")
+  @GetMapping({"/", "login"})
   public String login() {
     return "guest/login";
   }
