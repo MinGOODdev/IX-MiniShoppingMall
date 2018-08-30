@@ -18,11 +18,11 @@ public class Order {
   private int id;
   private int number;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "userId")
   User user;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "productId")
   Product product;
 

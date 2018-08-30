@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   public void configure(WebSecurity webSecurity) {
     // 보안 기능이 필요없는 Resource(css, js, png 등)의 경로를 설정합니다.
-    webSecurity.ignoring().antMatchers("/resources/**");
+    webSecurity.ignoring().antMatchers("/res/**");
   }
 
   @Override
@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     httpSecurity.logout()
             .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout_processing"))
-            .logoutSuccessUrl("/login")
+            .logoutSuccessUrl("/index")
             .invalidateHttpSession(true);   // 로그아웃 시, 세션 데이터 전부 삭제
 
     httpSecurity.authenticationProvider(myAuthenticationProvider);
