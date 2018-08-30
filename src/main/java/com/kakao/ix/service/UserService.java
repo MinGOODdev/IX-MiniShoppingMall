@@ -50,9 +50,10 @@ public class UserService {
    */
   public void insert(String login, String password) {
     String encryptPassword = SHA256Encrypt.encrypt(password);
-    User user = new User();
-    user.setLogin(login);
-    user.setPassword(encryptPassword);
+    User user = User.builder()
+            .login(login)
+            .password(encryptPassword)
+            .build();
     userRepository.save(user);
   }
 

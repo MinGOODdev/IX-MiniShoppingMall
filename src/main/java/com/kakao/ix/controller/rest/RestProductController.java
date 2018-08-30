@@ -57,8 +57,8 @@ public class RestProductController {
                                             @PathVariable("number") int number) {
     Principal principal = SecurityContextHolder.getContext().getAuthentication();
     int userId = userService.findByLogin(principal.getName()).getId();
-
     cartService.insertProduct(userId, productId, number);
+
     Cart cart = cartService.findByUserIdAndProductId(userId, productId);
     return new ResponseEntity<>(cart, HttpStatus.OK);
   }
