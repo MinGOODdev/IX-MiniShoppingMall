@@ -18,11 +18,11 @@ public class Cart {
   private int id;
   private int number;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne
   @JoinColumn(name = "userId")
   User user;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne
   @JoinColumn(name = "productId")
   Product product;
 

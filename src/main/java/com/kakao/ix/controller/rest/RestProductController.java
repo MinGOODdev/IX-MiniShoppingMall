@@ -3,6 +3,7 @@ package com.kakao.ix.controller.rest;
 import com.kakao.ix.domain.Cart;
 import com.kakao.ix.domain.Product;
 import com.kakao.ix.domain.User;
+import com.kakao.ix.model.ResponseModel;
 import com.kakao.ix.service.CartService;
 import com.kakao.ix.service.ProductService;
 import com.kakao.ix.service.UserService;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("rest/kakao")
+@RequestMapping("api")
 public class RestProductController {
 
   @Autowired
@@ -29,9 +30,13 @@ public class RestProductController {
    * @return
    */
   @GetMapping("products")
-  public ResponseEntity<List<Product>> productList() {
+  public ResponseEntity<ResponseModel> productList() {
+    ResponseModel responseModel = new ResponseModel();
     List<Product> productList = productService.findAll();
-    return new ResponseEntity<>(productList, HttpStatus.OK);
+
+    responseModel.setData(productList);
+    responseModel.setMsg("상품 목록 전체 조회");
+    return new ResponseEntity<>(responseModel, HttpStatus.OK);
   }
 
   /**
@@ -40,9 +45,13 @@ public class RestProductController {
    * @return
    */
   @GetMapping("product/{productId}")
-  public ResponseEntity<Product> getProduct(@PathVariable("productId") int id) {
+  public ResponseEntity<ResponseModel> getProduct(@PathVariable("productId") int id) {
+    ResponseModel responseModel = new ResponseModel();
     Product product = productService.findById(id);
-    return new ResponseEntity<>(product, HttpStatus.OK);
+
+    responseModel.setData(product);
+    responseModel.setMsg("상품 개별 조회");
+    return new ResponseEntity<>(responseModel, HttpStatus.OK);
   }
 
   /**
@@ -52,13 +61,16 @@ public class RestProductController {
    * @return
    */
   @PutMapping("product/{productId}/{number}/cart")
-  public ResponseEntity<Cart> productInCart(@PathVariable("productId") int productId,
+  public ResponseEntity<ResponseModel> productInCart(@PathVariable("productId") int productId,
                                             @PathVariable("number") int number) {
+    ResponseModel responseModel = new ResponseModel();
     User currentUser = userService.currentLoginUser();
     cartService.insertProduct(currentUser.getId(), productId, number);
-
     Cart cart = cartService.findByUserIdAndProductId(currentUser.getId(), productId);
-    return new ResponseEntity<>(cart, HttpStatus.OK);
+
+    responseModel.setData(cart);
+    responseModel.setMsg("해당 상품 장바구니에 추가");
+    return new ResponseEntity<>(responseModel, HttpStatus.OK);
   }
 
 }

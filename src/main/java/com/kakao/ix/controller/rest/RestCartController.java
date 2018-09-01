@@ -2,6 +2,7 @@ package com.kakao.ix.controller.rest;
 
 import com.kakao.ix.domain.Cart;
 import com.kakao.ix.domain.User;
+import com.kakao.ix.model.ResponseModel;
 import com.kakao.ix.service.CartService;
 import com.kakao.ix.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("rest/kakao")
+@RequestMapping("api")
 public class RestCartController {
 
   @Autowired
@@ -25,10 +26,14 @@ public class RestCartController {
    * @return
    */
   @GetMapping("cart")
-  public ResponseEntity<List<Cart>> cartList() {
+  public ResponseEntity<ResponseModel> cartList() {
+    ResponseModel responseModel = new ResponseModel();
     User currentUser = userService.currentLoginUser();
     List<Cart> cartList = cartService.findByUserId(currentUser.getId());
-    return new ResponseEntity<>(cartList, HttpStatus.OK);
+
+    responseModel.setData(cartList);
+    responseModel.setMsg("장바구니 조회");
+    return new ResponseEntity<>(responseModel, HttpStatus.OK);
   }
 
   /**
@@ -38,11 +43,15 @@ public class RestCartController {
    * @return
    */
   @DeleteMapping("cart/{productId}")
-  public ResponseEntity<String> removeProductInCart(@PathVariable("productId") int productId) {
+  public ResponseEntity<ResponseModel> removeProductInCart(@PathVariable("productId") int productId) {
+    ResponseModel responseModel = new ResponseModel();
     User user = userService.currentLoginUser();
     Cart cart = cartService.findByUserIdAndProductId(user.getId(), productId);
+
+    responseModel.setData(cart);
+    responseModel.setMsg("선택 상품 장바구니에서 삭제");
     cartService.delete(cart);
-    return new ResponseEntity<>("Delete Success", HttpStatus.OK);
+    return new ResponseEntity<>(responseModel, HttpStatus.OK);
   }
 
 }

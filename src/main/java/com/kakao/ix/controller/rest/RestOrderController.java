@@ -2,6 +2,7 @@ package com.kakao.ix.controller.rest;
 
 import com.kakao.ix.domain.Order;
 import com.kakao.ix.domain.User;
+import com.kakao.ix.model.ResponseModel;
 import com.kakao.ix.service.OrderService;
 import com.kakao.ix.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("rest/kakao")
+@RequestMapping("api")
 public class RestOrderController {
 
   @Autowired
@@ -29,12 +30,15 @@ public class RestOrderController {
    * @return
    */
   @PutMapping("cart/order")
-  public ResponseEntity<List<Order>> orderListUpdate() {
+  public ResponseEntity<ResponseModel> orderListUpdate() {
+    ResponseModel responseModel = new ResponseModel();
     User currentUser = userService.currentLoginUser();
     orderService.insert(currentUser.getId());
-
     List<Order> orderList = orderService.findByUserId(currentUser.getId());
-    return new ResponseEntity<>(orderList, HttpStatus.OK);
+
+    responseModel.setData(orderList);
+    responseModel.setMsg("장바구니 목록 구매");
+    return new ResponseEntity<>(responseModel, HttpStatus.OK);
   }
 
   /**
@@ -42,13 +46,16 @@ public class RestOrderController {
    * @return
    */
   @GetMapping("orders")
-  public ResponseEntity<Map<String, Integer>> orderList() {
+  public ResponseEntity<ResponseModel> orderList() {
+    ResponseModel responseModel = new ResponseModel();
     User currentUser = userService.currentLoginUser();
     List<Order> orderList = orderService.findByUserId(currentUser.getId());
 
     // 상품 별 금액과 총 금액을 보기 쉽게 하기 위한 Map
     Map<String, Integer> orderMap = orderService.makeReturnHashMap(orderList);
-    return new ResponseEntity<>(orderMap, HttpStatus.OK);
+    responseModel.setData(orderMap);
+    responseModel.setMsg("구매 내역 조회");
+    return new ResponseEntity<>(responseModel, HttpStatus.OK);
   }
 
 }
