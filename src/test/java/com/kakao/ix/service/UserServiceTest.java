@@ -25,9 +25,9 @@ public class UserServiceTest {
     log.info("* {}", user.getLogin());
   }
 
-  @Test
-  public void 유저_저장_회원가입() throws Exception {
-    userService.insert("mingood", "111111");
-  }
+//  @Test
+//  public void 유저_저장_회원가입() throws Exception {
+//    userService.insert("mingood", "111111");
+//  }
 
 }

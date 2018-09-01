@@ -44,7 +44,7 @@ public class RestGuestControllerTest {
             .password("111111")
             .build();
 
-    MvcResult mvcResult = mockMvc.perform(post("/rest/register")
+    MvcResult mvcResult = mockMvc.perform(post("/api/register")
             .contentType(contentType)
             .content(asJsonString(user)))
             .andExpect(status().isOk())

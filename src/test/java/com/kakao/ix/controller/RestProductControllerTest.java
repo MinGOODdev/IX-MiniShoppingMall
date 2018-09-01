@@ -38,7 +38,7 @@ public class RestProductControllerTest {
 
   @Test
   public void 상품_목록_전체_조회() throws Exception {
-    MvcResult mvcResult = mockMvc.perform(get("/rest/kakao/products"))
+    MvcResult mvcResult = mockMvc.perform(get("/api/products"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(contentType))
             .andDo(print())
@@ -48,7 +48,7 @@ public class RestProductControllerTest {
 
   @Test
   public void 상품_개별_조회() throws Exception {
-    MvcResult mvcResult = mockMvc.perform(get("/rest/kakao/product/2"))
+    MvcResult mvcResult = mockMvc.perform(get("/api/product/2"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(contentType))
             .andDo(print())
