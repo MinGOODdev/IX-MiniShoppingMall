@@ -1,5 +1,5 @@
 # KakaoIX - Mini Shopping Mall
-### 2018 카카오IX 8월 경력 공채
+### 2018 카카오IX 8월 (신입)경력 공채
 
 ## Use
 * Spring Boot

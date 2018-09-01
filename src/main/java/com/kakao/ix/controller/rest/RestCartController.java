@@ -7,9 +7,7 @@ import com.kakao.ix.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,6 +29,20 @@ public class RestCartController {
     User currentUser = userService.currentLoginUser();
     List<Cart> cartList = cartService.findByUserId(currentUser.getId());
     return new ResponseEntity<>(cartList, HttpStatus.OK);
+  }
+
+  /**
+   * 장바구니 항목 개별 삭제
+   * (개수에 상관없이 삭제하고 다시 원하는 개수를 지정해서 장바구니 추가하는게 낫다고 판단)
+   * @param productId
+   * @return
+   */
+  @DeleteMapping("cart/{productId}")
+  public ResponseEntity<String> removeProductInCart(@PathVariable("productId") int productId) {
+    User user = userService.currentLoginUser();
+    Cart cart = cartService.findByUserIdAndProductId(user.getId(), productId);
+    cartService.delete(cart);
+    return new ResponseEntity<>("Delete Success", HttpStatus.OK);
   }
 
 }
