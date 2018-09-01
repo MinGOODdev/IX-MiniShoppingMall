@@ -30,9 +30,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     httpSecurity.authorizeRequests()
             .antMatchers("/kakao/product/cart").authenticated()
             .antMatchers("/kakao/cart/**").authenticated()
-            .antMatchers("/rest/kakao/product/**/**/cart").authenticated()
-            .antMatchers("/rest/kakao/cart/**").authenticated()
-            .antMatchers("/rest/kakao/orders").authenticated()
+            .antMatchers("/kakao/orders").authenticated()
+            .antMatchers("/api/product/**/**/cart").authenticated()
+            .antMatchers("/api/cart/**").authenticated()
+            .antMatchers("/api/order*").authenticated()
             .antMatchers("/**").permitAll();
 
     // 로그인 설정
