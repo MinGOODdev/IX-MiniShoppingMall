@@ -6,6 +6,9 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Cross-Origin Filter
+ */
 @Component
 public class CorsFilter implements Filter {
 
