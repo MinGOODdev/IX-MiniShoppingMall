@@ -1,10 +1,6 @@
 # KakaoIX - Mini Shopping Mall
 ### 2018 카카오IX 8월 (신입)경력 공채
 
-## TO DO
-* 메인페이지 footer 만들기
-* 스크린샷 README 추가하기
-
 ## API
 * [비회원_API](https://github.com/MinGOODdev/KakaoIX-MiniShoppingMall/wiki/1.-RestGuestController)
 * [상품_API](https://github.com/MinGOODdev/KakaoIX-MiniShoppingMall/wiki/2.-RestProductController)
@@ -19,6 +15,17 @@
 java -jar {war_파일명}.war
 ```
 * 웹 브라우저 실행 - localhost:8080
+
+## View
+![Login](./img/login.png)
+---
+![Main](./img/main.png)
+---
+![Product](./img/product.png)
+---
+![Cart](./img/cart.png)
+---
+![Order](./img/order.png)
 
 ## Use
 * Spring Boot
