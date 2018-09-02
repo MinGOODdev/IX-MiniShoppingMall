@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <title>Kakao IX - 로그인</title>
+    <title>Kakao IX - 회원가입</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -22,9 +22,9 @@
 </head>
 <body>
 <div class="container text-center login-margin-top">
-    <h1 style="color: #ffc107;">KAKAO IX</h1>
+    <h1 class="logo-color">KAKAO IX</h1>
     <hr/>
-    <form:form action="login_processing" method="post">
+    <form:form action="/register" method="post">
         <div class="form-group">
             <label>아이디</label>
             <input class="form-control margin-auto login-input-width" type="text" name="login"
@@ -37,10 +37,7 @@
         </div>
 
         <div>
-            <button type="submit" class="btn btn-warning">로그인</button>
-        </div>
-        <div class="div-margin-top">
-            <a href="/register" class="logo-color">회원가입</a>
+            <button type="submit" class="btn btn-warning">회원가입</button>
         </div>
     </form:form>
 

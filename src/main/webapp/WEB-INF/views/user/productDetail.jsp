@@ -4,7 +4,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
-    <title>Kakao IX - MinGOOD</title>
+    <title>Kakao IX - 상품정보</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -59,7 +59,7 @@
             <!-- 현재 로그인 사용자 표시 -->
             <sec:authorize access="authenticated">
                 <div class="float-right div-margin-top">
-                    <h4><sec:authentication property="user.login"/> 님 "hello, world!"</h4>
+                    <h4><sec:authentication property="user.login"/>님 "hello, world!"</h4>
                 </div>
             </sec:authorize>
             <!-- ./ 현재 로그인 사용자 표시 -->
@@ -68,31 +68,31 @@
     <!-- ./ 메뉴바 -->
     <hr/>
 
-    <!-- 전체 상품 목록 -->
-    <div class="row text-center">
-        <c:forEach var="product" items="${ productList }">
-            <div class="col-sm">
-                <div class="card custom-card">
-                    <a href="/kakao/product/${ product.id }" class="product-font-color">
-                        <img src="${ product.imgUrl }" alt="KAKAO" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">${ product.productName }</h5>
-                            <p>${ product.productPrice } 원</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </c:forEach>
-    </div>
-    <!-- ./ 전체 상품 목록 -->
-
-    <hr/>
+    <!-- 개별 상품 -->
     <div>
-        <div class="text-center">
-            <h4>used Spring Boot & JSP</h4>
-            <h4>contact : mingood92@gmail.com</h4>
-            <h3>&copy; 2018 MinGOOD & KAKAO IX. All Rights Reserved.</h3>
-        </div>
+        <h4>${ product.productName }</h4>
+        <img src="${ product.imgUrl }" class="product-detail-card text-center">
     </div>
+    <hr/>
+    <div class="row text-center">
+        <div class="col"></div>
+        <div class="col-6">
+            <sec:authorize access="authenticated">
+                <form:form action="/kakao/product/cart" method="post">
+                    <input class="form-control text-center" id="productId" name="productId"
+                           value="${ product.id }" hidden>
+                    <h5>개당 ${ product.productPrice } 원</h5>
+                    <div class="form-group product-num-input-width">
+                        <input class="form-control text-center" id="number" name="number"
+                               placeholder="개수를 입력하세요.">
+                    </div>
+                    <button class="btn btn-success" type="submit">장바구니 추가</button>
+                </form:form>
+            </sec:authorize>
+        </div>
+        <div class="col"></div>
+    </div>
+    <!-- ./ 개별 상품 -->
+</div>
 </body>
 </html>

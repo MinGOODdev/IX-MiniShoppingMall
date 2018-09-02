@@ -4,7 +4,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
-    <title>Kakao IX - MinGOOD</title>
+    <title>Kakao IX - 장바구니</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -59,7 +59,7 @@
             <!-- 현재 로그인 사용자 표시 -->
             <sec:authorize access="authenticated">
                 <div class="float-right div-margin-top">
-                    <h4><sec:authentication property="user.login"/> 님 "hello, world!"</h4>
+                    <h4><sec:authentication property="user.login"/>님 "hello, world!"</h4>
                 </div>
             </sec:authorize>
             <!-- ./ 현재 로그인 사용자 표시 -->
@@ -67,32 +67,42 @@
     </nav>
     <!-- ./ 메뉴바 -->
     <hr/>
-
-    <!-- 전체 상품 목록 -->
-    <div class="row text-center">
-        <c:forEach var="product" items="${ productList }">
-            <div class="col-sm">
-                <div class="card custom-card">
-                    <a href="/kakao/product/${ product.id }" class="product-font-color">
-                        <img src="${ product.imgUrl }" alt="KAKAO" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">${ product.productName }</h5>
-                            <p>${ product.productPrice } 원</p>
-                        </div>
-                    </a>
-                </div>
+    <!-- 장바구니 목록 -->
+    <div class="table-responsive">
+        <h3>나의 장바구니</h3>
+        <form:form action="/kakao/cart/order" method="post">
+            <table class="table table-hover table-bordered">
+                <thead class="thead-light">
+                <tr>
+                    <th>IMG</th>
+                    <th>상품명</th>
+                    <th>개수</th>
+                    <th>개당 가격(원)</th>
+                    <th>가격(원)</th>
+                    <th>#</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="cart" items="${ cartList }">
+                    <tr>
+                        <td><img src="${ cart.product.imgUrl }" class="custom-card"></td>
+                        <td><h3>${ cart.product.productName }</h3></td>
+                        <td><h3>${ cart.number }</h3></td>
+                        <td><h3>${ cart.product.productPrice }</h3></td>
+                        <td><h3>${ cart.product.productPrice * cart.number }</h3></td>
+                        <td>
+                            <a href="/kakao/cart/out?productId=${ cart.product.id }" class="btn-sm btn-danger">X</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+            <div class="float-right">
+                <button class="btn btn-info" type="submit">구매하기</button>
             </div>
-        </c:forEach>
+        </form:form>
     </div>
-    <!-- ./ 전체 상품 목록 -->
-
-    <hr/>
-    <div>
-        <div class="text-center">
-            <h4>used Spring Boot & JSP</h4>
-            <h4>contact : mingood92@gmail.com</h4>
-            <h3>&copy; 2018 MinGOOD & KAKAO IX. All Rights Reserved.</h3>
-        </div>
-    </div>
+    <!-- ./ 장바구니 목록 -->
+</div>
 </body>
 </html>

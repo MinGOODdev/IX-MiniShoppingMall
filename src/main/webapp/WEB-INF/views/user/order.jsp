@@ -4,7 +4,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
-    <title>Kakao IX - MinGOOD</title>
+    <title>Kakao IX - 구매내역</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -59,7 +59,7 @@
             <!-- 현재 로그인 사용자 표시 -->
             <sec:authorize access="authenticated">
                 <div class="float-right div-margin-top">
-                    <h4><sec:authentication property="user.login"/> 님 "hello, world!"</h4>
+                    <h4><sec:authentication property="user.login"/>님 "hello, world!"</h4>
                 </div>
             </sec:authorize>
             <!-- ./ 현재 로그인 사용자 표시 -->
@@ -67,32 +67,36 @@
     </nav>
     <!-- ./ 메뉴바 -->
     <hr/>
-
-    <!-- 전체 상품 목록 -->
-    <div class="row text-center">
-        <c:forEach var="product" items="${ productList }">
-            <div class="col-sm">
-                <div class="card custom-card">
-                    <a href="/kakao/product/${ product.id }" class="product-font-color">
-                        <img src="${ product.imgUrl }" alt="KAKAO" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">${ product.productName }</h5>
-                            <p>${ product.productPrice } 원</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </c:forEach>
-    </div>
-    <!-- ./ 전체 상품 목록 -->
-
-    <hr/>
-    <div>
-        <div class="text-center">
-            <h4>used Spring Boot & JSP</h4>
-            <h4>contact : mingood92@gmail.com</h4>
-            <h3>&copy; 2018 MinGOOD & KAKAO IX. All Rights Reserved.</h3>
+    <!-- 나의 구매 내역 -->
+    <div class="table-responsive">
+        <h3>구매 내역</h3>
+        <table class="table table-hover table-bordered">
+            <thead class="thead-light">
+            <tr>
+                <th>IMG</th>
+                <th>상품명</th>
+                <th>개수</th>
+                <th>개당 가격(원)</th>
+                <th>가격(원)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="order" items="${ orderList }">
+                <tr>
+                    <td><img src="${ order.product.imgUrl }" class="custom-card"></td>
+                    <td><h3>${ order.product.productName }</h3></td>
+                    <td><h3>${ order.number }</h3></td>
+                    <td><h3>${ order.product.productPrice }</h3></td>
+                    <td><h3>${ order.product.productPrice * order.number }</h3></td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+        <div class="float-right">
+            <h3>총 결제 금액: ${ orderMap.get("총 금액") } 원</h3>
         </div>
     </div>
+    <!-- ./ 나의 구매 내역 -->
+</div>
 </body>
 </html>
