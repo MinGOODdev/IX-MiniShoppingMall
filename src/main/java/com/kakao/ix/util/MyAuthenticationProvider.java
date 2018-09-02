@@ -19,7 +19,17 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
 
   @Autowired
   private UserService userService;
-
+  
+  /**
+   * 사용자가 입력한 아이디와 패스워드를 검사할 때,
+   * Spring-Security 엔진에 의해 이 클래스의 authenticate 메소드가 자동으로 호출됩니다.
+   * 사용자가 입력한 아이디와 패스워드가 이 메소드의 파라미터로 전달됩니다.
+   *
+   * @param login
+   * @param password
+   * @return
+   * @throws AuthenticationException
+   */
   public Authentication authenticate(String login, String password) throws AuthenticationException {
     String encryptPassword = SHA256Encrypt.encrypt(password);
     User user = userService.findByLoginAndPassword(login, encryptPassword);
@@ -32,15 +42,6 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
     return new MyAuthentication(login, encryptPassword, grantedAuthorityList, user);
   }
 
-  /**
-   * 사용자가 입력한 아이디와 패스워드를 검사할 때,
-   * Spring-Security 엔진에 의해 이 클래스의 authenticate 메소드가 자동으로 호출됩니다.
-   * 사용자가 입력한 아이디와 패스워드가 이 메소드의 파라미터로 전달됩니다.
-   *
-   * @param authentication
-   * @return
-   * @throws AuthenticationException
-   */
   @Override
   public Authentication authenticate(Authentication authentication) throws AuthenticationException {
     String login = authentication.getName();
