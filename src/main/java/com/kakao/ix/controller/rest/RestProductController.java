@@ -27,6 +27,7 @@ public class RestProductController {
 
   /**
    * 상품 목록 전체 조회
+   *
    * @return
    */
   @GetMapping("products")
@@ -41,6 +42,7 @@ public class RestProductController {
 
   /**
    * 상품 목록 개별 조회
+   *
    * @param id: productId
    * @return
    */
@@ -56,13 +58,14 @@ public class RestProductController {
 
   /**
    * 해당 상품을 로그인 사용자 장바구니에 추가
+   *
    * @param productId
    * @param number
    * @return
    */
   @PutMapping("product/{productId}/{number}/cart")
   public ResponseEntity<ResponseModel> productInCart(@PathVariable("productId") int productId,
-                                            @PathVariable("number") int number) {
+                                                     @PathVariable("number") int number) {
     ResponseModel responseModel = new ResponseModel();
     User currentUser = userService.currentLoginUser();
     cartService.insertProduct(currentUser.getId(), productId, number);

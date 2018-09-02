@@ -25,6 +25,7 @@ public class ProductController {
 
   /**
    * 상품 목록 전체 조회
+   *
    * @param model
    * @return
    */
@@ -37,6 +38,7 @@ public class ProductController {
 
   /**
    * 상품 목록 개별 조회
+   *
    * @param model
    * @param id
    * @return
@@ -51,6 +53,7 @@ public class ProductController {
 
   /**
    * 해당 상품 장바구니에 담기
+   *
    * @param productId
    * @param number
    * @return

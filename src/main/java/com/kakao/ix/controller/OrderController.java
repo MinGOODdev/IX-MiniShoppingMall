@@ -25,6 +25,7 @@ public class OrderController {
 
   /**
    * 장바구니 목록 구매
+   *
    * @return
    */
   @PostMapping("cart/order")
@@ -36,6 +37,7 @@ public class OrderController {
 
   /**
    * 구매내역 조회
+   *
    * @param model
    * @return
    */

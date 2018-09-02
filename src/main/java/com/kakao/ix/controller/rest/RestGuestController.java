@@ -1,7 +1,6 @@
 package com.kakao.ix.controller.rest;
 
 import com.kakao.ix.domain.Product;
-import com.kakao.ix.domain.User;
 import com.kakao.ix.model.LoginModel;
 import com.kakao.ix.model.ResponseModel;
 import com.kakao.ix.service.CheckService;
@@ -26,6 +25,7 @@ public class RestGuestController {
 
   /**
    * 메인 페이지 - 상품 목록 포함
+   *
    * @return
    */
   @GetMapping("api")
@@ -55,8 +55,7 @@ public class RestGuestController {
       responseModel.setData(userService.findByLogin(login));
       responseModel.setMsg("회원가입 성공");
       return new ResponseEntity(responseModel, HttpStatus.OK);
-    }
-    else {
+    } else {
       responseModel.setMsg("중복 회원 존재");
       return new ResponseEntity(responseModel, HttpStatus.OK);
     }

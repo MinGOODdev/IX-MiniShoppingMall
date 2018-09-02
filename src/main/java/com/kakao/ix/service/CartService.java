@@ -21,6 +21,7 @@ public class CartService {
 
   /**
    * 해당 유저의 장바구니 목록 조회
+   *
    * @param userId
    * @return
    */
@@ -31,6 +32,7 @@ public class CartService {
 
   /**
    * 사용자의 장바구니에 해당 상품 정보 저장 및 업데이트 - number(개수)는 누적
+   *
    * @param userId
    * @param productId
    * @param number
@@ -46,8 +48,7 @@ public class CartService {
       cart.setProduct(product);
       cart.setNumber(number);
       cartRepository.save(cart);
-    }
-    else {
+    } else {
       tempCart.setNumber(tempCart.getNumber() + number);
       cartRepository.save(tempCart);
     }
@@ -55,6 +56,7 @@ public class CartService {
 
   /**
    * 사용자 ID와 상품 ID로 장바구니 해당 컬럼 조회
+   *
    * @param userId
    * @param productId
    * @return
@@ -66,6 +68,7 @@ public class CartService {
 
   /**
    * 해당 장바구니 항목 삭제
+   *
    * @param cart
    */
   public void delete(Cart cart) {

@@ -22,6 +22,7 @@ public class GuestController {
 
   /**
    * 로그인 후 첫 View - 상품 목록까지
+   *
    * @return
    */
   @GetMapping({"/", "index"})
@@ -33,6 +34,7 @@ public class GuestController {
 
   /**
    * 로그인 View
+   *
    * @return
    */
   @GetMapping("login")
@@ -42,6 +44,7 @@ public class GuestController {
 
   /**
    * 회원가입 View
+   *
    * @return
    */
   @GetMapping("register")
@@ -51,6 +54,7 @@ public class GuestController {
 
   /**
    * 회원가입 POST - 중복 회원가입을 못하도록 체크
+   *
    * @param login
    * @param password
    * @return

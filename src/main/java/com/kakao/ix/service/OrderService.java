@@ -23,6 +23,7 @@ public class OrderService {
 
   /**
    * 사용자 ID로 구매 리스트 조회
+   *
    * @param userId
    * @return
    */
@@ -33,6 +34,7 @@ public class OrderService {
 
   /**
    * 사용자 ID와 상품 ID로 해당 상품 구매 내역 검색
+   *
    * @param userId
    * @param productId
    * @return
@@ -45,6 +47,7 @@ public class OrderService {
   /**
    * 장바구니 구매 내역(주문 내역) 저장 및 업데이트 - number(개수)는 누적
    * 주문 내역을 업데이트하면서 장바구니 내역은 삭제
+   *
    * @param userId
    */
   public void insert(int userId) {
@@ -59,8 +62,7 @@ public class OrderService {
         tempOrder.setNumber(cart.getNumber());
         orderRepository.save(tempOrder);
         cartService.delete(cart);
-      }
-      else {
+      } else {
         order.setNumber(order.getNumber() + cart.getNumber());
         orderRepository.save(order);
         cartService.delete(cart);
